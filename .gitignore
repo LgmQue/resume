@@ -1,0 +1,4 @@
+.DS_Store
+
+# resume.json はリポジトリに置かない（データは index.html にインライン埋め込み）
+resume.json
