@@ -141,19 +141,20 @@
       background:rgba(52,217,176,.08);border-color:rgba(52,217,176,.2);
       color:var(--accent2);
     }
-    .entry-body-section{margin-top:10px;padding-top:10px;border-top:1px solid var(--border2);}
-    .entry-body-section+.entry-body-section{margin-top:8px;padding-top:8px;}
+    .entry-body-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+    .entry-body-section+.entry-body-section{margin-top:10px;padding-top:10px;}
     .entry-label{
-      font-size:0.67rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-      color:var(--muted);margin-bottom:5px;display:flex;align-items:center;gap:4px;
+      font-size:0.72rem;font-weight:700;letter-spacing:0.06em;
+      color:var(--text2);margin-bottom:6px;
+      display:flex;align-items:center;gap:6px;
     }
     .entry-label::before{
-      content:'';display:inline-block;width:2px;height:10px;
-      background:var(--accent);border-radius:1px;
+      content:'';display:inline-block;width:3px;height:12px;
+      background:var(--accent);border-radius:2px;flex-shrink:0;
     }
     .entry-label.achievement::before{background:var(--accent2);}
-    .entry-body{font-size:0.85rem;color:var(--text2);white-space:pre-wrap;line-height:1.75;}
-    .entry-achievement{font-size:0.85rem;color:var(--text);white-space:pre-wrap;line-height:1.75;}
+    .entry-body{font-size:0.87rem;color:var(--text);white-space:pre-wrap;line-height:1.8;}
+    .entry-achievement{font-size:0.87rem;color:var(--text);white-space:pre-wrap;line-height:1.8;}
     .cert-list{display:flex;flex-direction:column;gap:8px;}
     .cert-card{
       border-left:2px solid rgba(108,142,245,.3);border-radius:0 var(--r-sm) var(--r-sm) 0;
