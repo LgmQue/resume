@@ -105,14 +105,30 @@
       padding:1px 7px;background:var(--surf2);border:1px solid var(--border);
       border-radius:20px;white-space:nowrap;
     }
-    .entry-list{display:flex;flex-direction:column;gap:10px;}
+    .entry-list{display:flex;flex-direction:column;gap:12px;}
     .entry-card{
-      background:rgba(26,34,54,.5);border:1px solid var(--border);
-      border-radius:var(--r-sm);padding:10px 14px;
+      background:rgba(17,24,39,.7);
+      border:1px solid var(--border);
+      border-left:3px solid rgba(108,142,245,.4);
+      border-radius:0 var(--r-md) var(--r-md) 0;
+      padding:14px 16px;
+      transition:border-left-color 0.15s,background 0.15s;
     }
-    .entry-period{font-size:0.76rem;color:var(--muted);display:block;margin-bottom:4px;}
-    .entry-project{font-size:0.85rem;font-weight:600;color:var(--text);display:block;margin-bottom:6px;}
-    .entry-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+    .entry-card:hover{
+      background:rgba(26,34,54,.85);
+      border-left-color:var(--accent);
+    }
+    .entry-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
+    .entry-period{
+      font-size:0.75rem;color:var(--muted);
+      padding:1px 8px;background:var(--surf2);border:1px solid var(--border);
+      border-radius:20px;white-space:nowrap;
+    }
+    .entry-project{
+      font-size:0.9rem;font-weight:700;color:var(--text);
+      display:block;margin-bottom:10px;line-height:1.4;
+    }
+    .entry-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
     .badge{
       padding:2px 9px;border-radius:20px;font-size:0.72rem;font-weight:500;
       background:var(--surf2);border:1px solid var(--border);color:var(--muted);
@@ -125,9 +141,19 @@
       background:rgba(52,217,176,.08);border-color:rgba(52,217,176,.2);
       color:var(--accent2);
     }
-    .entry-label{font-size:0.68rem;font-weight:600;color:var(--text2);margin-top:8px;margin-bottom:2px;letter-spacing:0.03em;}
-    .entry-body{font-size:0.83rem;color:var(--text2);white-space:pre-wrap;line-height:1.65;}
-    .entry-achievement{font-size:0.83rem;color:var(--accent2);white-space:pre-wrap;line-height:1.65;}
+    .entry-body-section{margin-top:10px;padding-top:10px;border-top:1px solid var(--border2);}
+    .entry-body-section+.entry-body-section{margin-top:8px;padding-top:8px;}
+    .entry-label{
+      font-size:0.67rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:5px;display:flex;align-items:center;gap:4px;
+    }
+    .entry-label::before{
+      content:'';display:inline-block;width:2px;height:10px;
+      background:var(--accent);border-radius:1px;
+    }
+    .entry-label.achievement::before{background:var(--accent2);}
+    .entry-body{font-size:0.85rem;color:var(--text2);white-space:pre-wrap;line-height:1.75;}
+    .entry-achievement{font-size:0.85rem;color:var(--text);white-space:pre-wrap;line-height:1.75;}
     .cert-list{display:flex;flex-direction:column;gap:8px;}
     .cert-card{
       border-left:2px solid rgba(108,142,245,.3);border-radius:0 var(--r-sm) var(--r-sm) 0;
@@ -248,11 +274,13 @@
         ...techs.map(t=>`<span class="badge tech">${esc(t)}</span>`),
       ].filter(Boolean).join('');
       const body=[
-        e.responsibilitiesJa?`<p class="entry-label">担当業務</p><p class="entry-body">${multiline(e.responsibilitiesJa)}</p>`:'',
-        e.achievementsJa?`<p class="entry-label">実績・成果</p><p class="entry-achievement">${multiline(e.achievementsJa)}</p>`:'',
+        e.responsibilitiesJa?`<div class="entry-body-section"><p class="entry-label">担当業務</p><p class="entry-body">${multiline(e.responsibilitiesJa)}</p></div>`:'',
+        e.achievementsJa?`<div class="entry-body-section"><p class="entry-label achievement">実績・成果</p><p class="entry-achievement">${multiline(e.achievementsJa)}</p></div>`:'',
       ].filter(Boolean).join('');
-      return `<div class="entry-card"><span class="entry-period">${esc(period)}${dur2?` (${esc(dur2)})`:''}` +
-        `</span>${project?`<span class="entry-project">${esc(project)}</span>`:''}`+
+      return `<div class="entry-card">` +
+        `<div class="entry-meta"><span class="entry-period">${esc(period)}${dur2?` (${esc(dur2)})`:''}` +
+        `</span></div>` +
+        `${project?`<p class="entry-project">${esc(project)}</p>`:''}` +
         `${badges?`<div class="entry-badges">${badges}</div>`:''}`+
         `${body}</div>`;
     }).join('');
