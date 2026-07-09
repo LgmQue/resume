@@ -4,59 +4,165 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>職務経歴書</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
-      --text:#e6edf3;--muted:#8b949e;--accent:#5b7cf6;--accent2:#38d9a9;
-      --success:#3fb950;--danger:#f85149;
+      --bg:        #080c16;
+      --bg2:       #0d1224;
+      --surface:   #111827;
+      --surf2:     #1a2236;
+      --surf3:     #1f2a3d;
+      --border:    rgba(99,130,200,.18);
+      --border2:   rgba(99,130,200,.10);
+      --text:      #e8edf8;
+      --text2:     #b4bdd4;
+      --muted:     #6b7a9f;
+      --accent:    #6c8ef5;
+      --accent-h:  #8ba4ff;
+      --accent-glow: rgba(108,142,245,.35);
+      --accent2:   #34d9b0;
+      --grad:      linear-gradient(135deg,#6c8ef5 0%,#9b6cf5 100%);
+      --warn:      #fbbf24;
+      --success:   #34d399;
+      --r-sm: 6px; --r-md: 10px; --r-lg: 14px;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--bg);color:var(--text);font-family:'Meiryo UI','メイリオ','Hiragino Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100dvh;}
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Inter','Meiryo UI','メイリオ','Hiragino Sans',system-ui,sans-serif;
+      font-size:15px;line-height:1.7;min-height:100dvh;
+      -webkit-font-smoothing:antialiased;
+    }
     a{color:var(--accent);text-decoration:none;}
-    a:hover{color:var(--accent2);text-decoration:underline;}
+    a:hover{color:var(--accent-h);text-decoration:underline;}
     .page{max-width:860px;margin:0 auto;padding:40px 24px 80px;}
     .state-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px;color:var(--muted);font-size:1rem;}
     .state-box .icon{font-size:2.5rem;opacity:0.4;}
-    .header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:32px;}
-    .name-ja{font-size:2rem;font-weight:700;line-height:1.2;}
-    .name-en{font-size:1rem;color:var(--muted);margin-top:4px;}
-    .meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-    .meta-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;font-size:0.82rem;color:var(--muted);}
-    .social-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-    .social-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;color:var(--text);text-decoration:none;transition:border-color 0.15s,color 0.15s;}
-    .social-chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
-    .summary{margin-top:18px;color:var(--muted);font-size:0.95rem;white-space:pre-wrap;}
-    .section{margin-bottom:40px;}
-    .section-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;padding-bottom:6px;border-bottom:1px solid var(--border);}
-    .skill-list{display:flex;flex-wrap:wrap;gap:8px;}
-    .skill-chip{padding:3px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;font-size:0.82rem;}
+    .header{
+      padding:20px 22px 22px;margin-bottom:28px;
+      background:linear-gradient(135deg,var(--surf2) 0%,rgba(26,34,54,.6) 100%);
+      border:1px solid var(--border);border-radius:var(--r-lg);
+    }
+    .name-ja{
+      font-size:1.8rem;font-weight:700;line-height:1.2;
+      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .name-en{font-size:0.9rem;color:var(--muted);margin-top:4px;}
+    .meta-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+    .meta-chip{
+      display:inline-flex;align-items:center;gap:4px;
+      padding:3px 10px;border-radius:20px;font-size:0.78rem;
+      background:rgba(108,142,245,.1);border:1px solid rgba(108,142,245,.25);
+      color:var(--accent-h);
+    }
+    .social-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+    .social-chip{
+      display:inline-flex;align-items:center;gap:4px;padding:3px 10px;
+      background:rgba(108,142,245,.1);border:1px solid rgba(108,142,245,.4);
+      border-radius:20px;font-size:0.78rem;color:var(--accent);
+      text-decoration:none;transition:background 0.15s,color 0.15s;
+    }
+    .social-chip:hover{background:rgba(108,142,245,.2);color:var(--accent-h);text-decoration:none;}
+    .summary{
+      margin-top:14px;color:var(--text);font-size:0.9rem;
+      white-space:pre-wrap;line-height:1.75;
+      border-top:1px solid var(--border2);padding-top:12px;
+      border-left:3px solid var(--accent);padding-left:12px;
+      background:rgba(108,142,245,.04);
+      border-radius:0 var(--r-sm) var(--r-sm) 0;
+    }
+    .section{margin-bottom:32px;}
+    .section-title{
+      font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+      margin-bottom:14px;padding-bottom:6px;
+      border-bottom:1px solid var(--border2);
+    }
+    .skill-list{display:flex;flex-wrap:wrap;gap:6px;}
+    .skill-chip{
+      padding:3px 10px;font-size:0.78rem;font-weight:500;
+      background:rgba(52,217,176,.08);border:1px solid rgba(52,217,176,.25);
+      border-radius:20px;color:var(--accent2);
+    }
     .timeline{display:flex;flex-direction:column;gap:0;}
-    .company-block{position:relative;padding-left:20px;margin-bottom:28px;}
-    .company-block::before{content:'';position:absolute;left:6px;top:10px;bottom:0;width:2px;background:var(--border);}
-    .company-header{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;}
-    .company-dot{position:absolute;left:0;top:8px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);flex-shrink:0;}
-    .company-name{font-size:1.05rem;font-weight:700;}
-    .company-tenure{font-size:0.8rem;color:var(--muted);}
-    .entry-list{display:flex;flex-direction:column;gap:12px;}
-    .entry-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;}
-    .entry-period{font-size:0.78rem;color:var(--muted);margin-bottom:4px;}
-    .entry-project{font-size:0.9rem;font-weight:600;margin-bottom:6px;}
-    .entry-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
-    .badge{padding:2px 8px;border-radius:4px;font-size:0.75rem;background:var(--surface2);border:1px solid var(--border);color:var(--muted);}
-    .badge.role{border-color:var(--accent);color:var(--accent);}
-    .entry-body{font-size:0.85rem;color:var(--muted);white-space:pre-wrap;}
-    .entry-label{font-size:0.72rem;font-weight:600;color:var(--text);margin-top:8px;margin-bottom:2px;}
-    .cert-list{display:flex;flex-direction:column;gap:10px;}
-    .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;}
-    .cert-name{font-weight:600;font-size:0.95rem;}
-    .cert-meta{font-size:0.78rem;color:var(--muted);margin-top:4px;}
-    .output-list{display:flex;flex-direction:column;gap:8px;}
-    .output-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:baseline;gap:10px;}
-    .output-kind{font-size:0.72rem;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--surface2);flex-shrink:0;}
-    .output-title{font-size:0.88rem;flex:1;}
-    .output-date{font-size:0.75rem;color:var(--muted);flex-shrink:0;}
-    .footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--border);text-align:center;font-size:0.75rem;color:var(--muted);}
-    @media(max-width:600px){.page{padding:24px 16px 60px;}.name-ja{font-size:1.5rem;}.output-item{flex-wrap:wrap;}}
+    .company-block{position:relative;padding-left:28px;margin-bottom:22px;}
+    .company-block::before{
+      content:'';position:absolute;left:6px;top:22px;bottom:-4px;width:2px;
+      background:linear-gradient(180deg,rgba(108,142,245,.5) 0%,rgba(108,142,245,.0) 100%);
+    }
+    .company-dot{
+      position:absolute;left:0;top:8px;width:14px;height:14px;border-radius:50%;
+      background:var(--grad);box-shadow:0 0 8px var(--accent-glow);flex-shrink:0;
+    }
+    .company-header{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+    .company-name{font-size:0.95rem;font-weight:700;color:var(--text);}
+    .company-tenure{
+      font-size:0.76rem;color:var(--muted);
+      padding:1px 7px;background:var(--surf2);border:1px solid var(--border);
+      border-radius:20px;white-space:nowrap;
+    }
+    .entry-list{display:flex;flex-direction:column;gap:10px;}
+    .entry-card{
+      background:rgba(26,34,54,.5);border:1px solid var(--border);
+      border-radius:var(--r-sm);padding:10px 14px;
+    }
+    .entry-period{font-size:0.76rem;color:var(--muted);display:block;margin-bottom:4px;}
+    .entry-project{font-size:0.85rem;font-weight:600;color:var(--text);display:block;margin-bottom:6px;}
+    .entry-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+    .badge{
+      padding:2px 9px;border-radius:20px;font-size:0.72rem;font-weight:500;
+      background:var(--surf2);border:1px solid var(--border);color:var(--muted);
+    }
+    .badge.role{
+      background:rgba(108,142,245,.12);border-color:rgba(108,142,245,.35);
+      color:var(--accent-h);
+    }
+    .badge.tech{
+      background:rgba(52,217,176,.08);border-color:rgba(52,217,176,.2);
+      color:var(--accent2);
+    }
+    .entry-label{font-size:0.68rem;font-weight:600;color:var(--text2);margin-top:8px;margin-bottom:2px;letter-spacing:0.03em;}
+    .entry-body{font-size:0.83rem;color:var(--text2);white-space:pre-wrap;line-height:1.65;}
+    .entry-achievement{font-size:0.83rem;color:var(--accent2);white-space:pre-wrap;line-height:1.65;}
+    .cert-list{display:flex;flex-direction:column;gap:8px;}
+    .cert-card{
+      border-left:2px solid rgba(108,142,245,.3);border-radius:0 var(--r-sm) var(--r-sm) 0;
+      padding:8px 12px;transition:border-color 0.15s,background 0.15s;
+    }
+    .cert-card:hover{background:rgba(108,142,245,.04);border-left-color:var(--accent);}
+    .cert-name{font-weight:600;font-size:0.9rem;color:var(--text);}
+    .cert-meta{font-size:0.75rem;color:var(--muted);margin-top:4px;display:flex;flex-wrap:wrap;gap:10px;}
+    .cert-date{color:var(--muted);}
+    .cert-expiry{color:var(--warn);font-weight:500;}
+    .cert-issuer{color:var(--muted);}
+    .output-year-group{margin-bottom:14px;}
+    .output-year-header{
+      font-size:0.72rem;font-weight:700;color:var(--accent);
+      padding:4px 0 6px;margin-bottom:6px;
+      border-bottom:1px solid var(--border2);
+      letter-spacing:0.06em;
+    }
+    .output-list{display:flex;flex-direction:column;gap:6px;}
+    .output-item{display:flex;align-items:center;gap:8px;padding:3px 0;}
+    .output-kind{
+      font-size:0.68rem;font-weight:600;padding:2px 8px;border-radius:20px;flex-shrink:0;
+      background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:var(--warn);
+    }
+    .output-title{font-size:0.85rem;color:var(--text);flex:1;}
+    .output-date{font-size:0.73rem;color:var(--muted);flex-shrink:0;}
+    .footer{
+      margin-top:60px;padding-top:20px;border-top:1px solid var(--border);
+      text-align:center;font-size:0.73rem;color:var(--muted);
+    }
+    @media(max-width:600px){
+      .page{padding:20px 14px 60px;}
+      .name-ja{font-size:1.4rem;}
+      .output-item{flex-wrap:wrap;}
+    }
   </style>
 </head>
 <body>
@@ -100,6 +206,12 @@
     }
     return groups.sort((a,b)=>{const ts=s=>{const p=s?.split('-').map(Number);return p?p[0]*100+p[1]:0;};return ts(b.earliest)-ts(a.earliest);});
   }
+  function groupByYear(outputs){
+    const sorted=[...outputs].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+    const map=new Map();
+    for(const o of sorted){const y=o.date?o.date.slice(0,4):'年不明';if(!map.has(y))map.set(y,[]);map.get(y).push(o);}
+    return [...map.entries()].sort((a,b)=>b[0].localeCompare(a[0]));
+  }
 
   const data = window.__RESUME__;
   if(!data||!data.fullNameJa) return;
@@ -111,7 +223,7 @@
     v.email!==false&&data.email?`<span class="meta-chip">✉ ${esc(data.email)}</span>`:'',
     v.phone!==false&&data.phone?`<span class="meta-chip">☏ ${esc(data.phone)}</span>`:'',
     v.nearestStation!==false&&data.nearestStation?`<span class="meta-chip">🚉 ${esc(data.nearestStation)}</span>`:'',
-    v.birthDate!==false&&data.birthDate?`<span class="meta-chip">生 ${esc(data.birthDate)}</span>`:'',
+    v.birthDate!==false&&data.birthDate?`<span class="meta-chip">🎂 ${esc(data.birthDate)}</span>`:'',
   ].filter(Boolean).join('');
 
   const socialLinks=(data.socialLinks??[]).filter(l=>l.url).map(l=>{
@@ -133,14 +245,14 @@
       const badges=[
         e.role?`<span class="badge role">${esc(e.role)}</span>`:'',
         e.teamSize?`<span class="badge">${esc(fmtTeamSize(e.teamSize))}</span>`:'',
-        ...techs.map(t=>`<span class="badge">${esc(t)}</span>`),
+        ...techs.map(t=>`<span class="badge tech">${esc(t)}</span>`),
       ].filter(Boolean).join('');
       const body=[
         e.responsibilitiesJa?`<p class="entry-label">担当業務</p><p class="entry-body">${multiline(e.responsibilitiesJa)}</p>`:'',
-        e.achievementsJa?`<p class="entry-label">実績・成果</p><p class="entry-body">${multiline(e.achievementsJa)}</p>`:'',
+        e.achievementsJa?`<p class="entry-label">実績・成果</p><p class="entry-achievement">${multiline(e.achievementsJa)}</p>`:'',
       ].filter(Boolean).join('');
-      return `<div class="entry-card"><p class="entry-period">${esc(period)}${dur2?` (${esc(dur2)})`:''}` +
-        `</p>${project?`<p class="entry-project">${esc(project)}</p>`:''}`+
+      return `<div class="entry-card"><span class="entry-period">${esc(period)}${dur2?` (${esc(dur2)})`:''}` +
+        `</span>${project?`<span class="entry-project">${esc(project)}</span>`:''}`+
         `${badges?`<div class="entry-badges">${badges}</div>`:''}`+
         `${body}</div>`;
     }).join('');
@@ -150,17 +262,28 @@
 
   const certs=(data.certifications??[]).filter(c=>c.name);
   const certsHtml=v.certifications!==false&&certs.length?`<section class="section"><p class="section-title">資格・認定</p><div class="cert-list">${[...certs].sort((a,b)=>(b.issuedDate||'').localeCompare(a.issuedDate||'')).map(c=>{
-    const meta=[c.issuer,c.issuedDate?`取得: ${c.issuedDate}`:'',c.expiryDate?`有効期限: ${c.expiryDate}`:'無期限'].filter(Boolean).join('　');
     const nameHtml=c.url?`<a href="${esc(c.url)}" target="_blank" rel="noreferrer">${esc(c.name)}</a>`:esc(c.name);
-    return `<div class="cert-card"><p class="cert-name">${nameHtml}</p>${meta?`<p class="cert-meta">${esc(meta)}</p>`:''}</div>`;
+    const meta=[
+      c.issuedDate?`<span class="cert-date">取得: ${esc(fmtYM(c.issuedDate))}</span>`:'',
+      c.expiryDate?`<span class="cert-expiry">有効期限: ${esc(fmtYM(c.expiryDate))}</span>`:'',
+      c.issuer?`<span class="cert-issuer">${esc(c.issuer)}</span>`:'',
+    ].filter(Boolean).join('');
+    return `<div class="cert-card"><p class="cert-name">${nameHtml}</p>${meta?`<div class="cert-meta">${meta}</div>`:''}</div>`;
   }).join('')}</div></section>`:'';
 
-  const outputs=(data.outputs??[]);
-  const outputsHtml=v.outputs!==false&&outputs.length?`<section class="section"><p class="section-title">記事・登壇・ウェビナー</p><div class="output-list">${[...outputs].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).map(o=>{
-    const dateStr=o.date?new Date(o.date).toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',timeZone:'Asia/Tokyo'}):'';
-    const titleHtml=o.url?`<a href="${esc(o.url)}" target="_blank" rel="noreferrer">${esc(o.title||o.url)}</a>`:esc(o.title);
-    return `<div class="output-item"><span class="output-kind">${esc(o.kind)}</span><span class="output-title">${titleHtml}</span><span class="output-date">${esc(dateStr)}</span></div>`;
-  }).join('')}</div></section>`:'';
+  const outputs=(data.outputs??[]).filter(o=>o.title||o.url);
+  const outputsHtml=v.outputs!==false&&outputs.length?(()=>{
+    const yearGroups=groupByYear(outputs);
+    const inner=yearGroups.map(([year,items])=>{
+      const rows=items.map(o=>{
+        const dateStr=o.date?new Date(o.date).toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',timeZone:'Asia/Tokyo'}):'';
+        const titleHtml=o.url?`<a href="${esc(o.url)}" target="_blank" rel="noreferrer">${esc(o.title||o.url)}</a>`:esc(o.title);
+        return `<div class="output-item"><span class="output-kind">${esc(o.kind)}</span><span class="output-title">${titleHtml}</span><span class="output-date">${esc(dateStr)}</span></div>`;
+      }).join('');
+      return `<div class="output-year-group"><p class="output-year-header">${esc(year)}年</p><div class="output-list">${rows}</div></div>`;
+    }).join('');
+    return `<section class="section"><p class="section-title">記事・登壇・ウェビナー</p>${inner}</section>`;
+  })():'';
 
   app.innerHTML=`<div class="page">
     <header class="header">
